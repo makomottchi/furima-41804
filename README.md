@@ -14,22 +14,23 @@
 ### Association
 
 - has_many :products, dependent: :destroy
+- has_one :order
 
 
 ## destinations テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| product            | references | null: false, foreign_key: true |
-| post_code          | string | null: false |
-| prefecture         | string | null: false |
-| city               | string | null: false |
-| address            | string | null: false |
-| building_name      | string | 
-| phone_number       | string | null: false |
+| post_code          | string     | null: false |
+| prefecture_id      | integer    | null: false |
+| city               | string     | null: false |
+| address            | string     | null: false |
+| building_name      | string     | 
+| phone_number       | string     | null: false |
 ### Association
 
 - belongs_to :product
+- has_one :order
 
 
      
@@ -42,11 +43,11 @@
 | name               | string | null: false |
 | price              | integer| null: false |
 | description        | text   | null: false |
-| status             | integer| null: false |
-| category           | integer| null: false |
-| shipping_cost      | integer| null: false |
-| shipping_days      | integer| null: false |
-| prefecture         | integer| null: false |
+| status_id          | integer| null: false |
+| category_id        | integer| null: false |
+| shipping_cost_id   | integer| null: false |
+| shipping_days_id   | integer| null: false |
+| prefecture_id      | integer| null: false |
 
 ### Association
 
@@ -59,11 +60,16 @@
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
 | product            | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
+| destination        | references | null: false, foreign_key: true |
+
 
 
 ### Association
 
 - belongs_to :product
+- belongs_to :user
+- belongs_to :destination
 
 
 
