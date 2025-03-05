@@ -16,11 +16,11 @@
 - has_many :products, dependent: :destroy
 
 
-## destination テーブル
+## destinations テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| product_id         | integer    | null: false, foreign_key: true |
+| product            | references | null: false, foreign_key: true |
 | post_code          | string | null: false |
 | prefecture         | string | null: false |
 | city               | string | null: false |
@@ -31,64 +31,46 @@
 
 - belongs_to :product
 
-## card テーブル
 
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| product_id            | integer    | null: false, foreign_key: true |
-| customer_id        | string | null: false |
-| card_id            | string | null: false |
-
-### Association
-
-- belongs_to :product
      
-## category テーブル
+
+## products テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
+| user               | references | null: false, foreign_key: true |
 | name               | string | null: false |
-
-
-### Association
-
-- has_many :products
-
-## product テーブル
-
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| user_id            | integer    | null: false, foreign_key: true |
-| name               | string | null: false |
-| price              | string | null: false |
-| description        | string | null: false |
-| status             | string | null: false |
-| size               | string | null: false |
-| shipping_cost      | string | null: false |
-| shipping_days      | string | null: false |
-| prefecture_id      | string | null: false |
-| judgment           | string |  
-| category_id        | integer | null: false, foreign_key: true |
-
+| price              | integer| null: false |
+| description        | text   | null: false |
+| status             | integer| null: false |
+| category           | integer| null: false |
+| shipping_cost      | integer| null: false |
+| shipping_days      | integer| null: false |
+| prefecture         | integer| null: false |
 
 ### Association
 
 - belongs_to :user 
-- belongs_to :category 
-- has_many :images, dependent: :destroy
-- belongs_to_active_hash :prefecture
 - has_one :destination
-- has_one :card
+- has_one :order
 
-## image テーブル
+## orders テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| product_id         | integer    | null: false, foreign_key: true |
-| image              | string | null: false |
+| product            | references | null: false, foreign_key: true |
+
 
 ### Association
-- belongs_to :product 
+
+- belongs_to :product
+
+
+
+
+
+
+
 
 
 
