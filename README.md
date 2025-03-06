@@ -14,7 +14,7 @@
 ### Association
 
 - has_many :products, dependent: :destroy
-- has_one :order
+- has_many :orders, dependent: :destroy
 
 
 ## destinations テーブル
@@ -27,10 +27,10 @@
 | address            | string     | null: false |
 | building_name      | string     | 
 | phone_number       | string     | null: false |
+| order              | references | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :product
-- has_one :order
+- belongs_to :order
 
 
      
@@ -46,13 +46,12 @@
 | status_id          | integer| null: false |
 | category_id        | integer| null: false |
 | shipping_cost_id   | integer| null: false |
-| shipping_days_id   | integer| null: false |
+| shipping_day_id    | integer| null: false |
 | prefecture_id      | integer| null: false |
 
 ### Association
 
 - belongs_to :user 
-- has_one :destination
 - has_one :order
 
 ## orders テーブル
@@ -61,7 +60,6 @@
 | ------------------ | ---------- | ----------- |
 | product            | references | null: false, foreign_key: true |
 | user               | references | null: false, foreign_key: true |
-| destination        | references | null: false, foreign_key: true |
 
 
 
@@ -69,7 +67,7 @@
 
 - belongs_to :product
 - belongs_to :user
-- belongs_to :destination
+- has_to :destination
 
 
 
