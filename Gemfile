@@ -71,7 +71,7 @@ group :test do
 end
 
 group :development do
-  gem 'rubocop', require: false
+  gem 'rubocop', '1.71.2',require: false
 end
 
 group :production do
