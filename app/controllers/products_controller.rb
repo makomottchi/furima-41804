@@ -6,7 +6,8 @@ end
 
 def new
   @product = Product.new
-  @categories = Category.all  
+  @categories = Category.all
+  @statuses = Status.all  
 end
 
 def create
@@ -21,6 +22,7 @@ end
 def edit
   @product = Product.find(params[:id])
   @categories = Category.all
+  @statuses = Status.all
 end
 
 private
