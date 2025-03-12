@@ -9,5 +9,10 @@ FactoryBot.define do
     shipping_day_id { 2 } # 1~2日で発送などの適切な発送日数IDを設定
     price { 500 }
     association :user # 商品を持っているユーザーを設定
+
+
+    after(:build) do |product|
+      product.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
+    end
   end
 end

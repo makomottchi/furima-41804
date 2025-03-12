@@ -14,6 +14,7 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
   validates :user, presence: true
+  validates :image, presence: true
 
   validates :status_id, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}

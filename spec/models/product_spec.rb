@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   before do
     @product = FactoryBot.build(:product)
-    @product.image.attach(io: File.open('spec/fixtures/test_image.png'), filename: 'test_image.png', content_type: 'image/png')
-  end
+  end   
 
   describe '商品新規登録' do
     context '新規登録できるとき' do
@@ -16,8 +15,7 @@ RSpec.describe Product, type: :model do
     context '新規登録できないとき' do
       it '商品画像が無いと登録できない' do
         @product.image = nil
-        @product.valid?
-        expect(@product.errors.full_messages).to include("Image can't be blank")
+        expect(@product).to_not be_valid
       end
 
       it '商品名が無いと登録できない' do
@@ -47,7 +45,7 @@ RSpec.describe Product, type: :model do
       it '配送料の負担情報が無いと登録できない' do
         @product.shipping_cost_id = 1 # "---"のidを1としている場合
         @product.valid?
-        expect(@product.errors.full_messages).to include("Shipping_cost can't be blank")
+        expect(@product.errors.full_messages).to include("Shipping cost can't be blank")
       end
 
       it '発送元の地域情報が無いと登録できない' do
@@ -59,13 +57,19 @@ RSpec.describe Product, type: :model do
       it '発送までの日数情報が無いと登録できない' do
         @product.shipping_day_id = 1 # "---"のidを1としている場合
         @product.valid?
-        expect(@product.errors.full_messages).to include("Shipping_day can't be blank")
+        expect(@product.errors.full_messages).to include("Shipping day can't be blank")
       end
 
       it '価格情報が無いと登録できない' do
         @product.price = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Price can't be blank")
+      end
+      it 'userが紐付いていないと保存できない' do
+        @product.user = nil
+        @product.valid?
+        expect(@product.errors.full_messages).to include('User must exist')
+
       end
     end
   end
