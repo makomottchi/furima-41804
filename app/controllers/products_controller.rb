@@ -7,7 +7,8 @@ end
 def new
   @product = Product.new
   @categories = Category.all
-  @statuses = Status.all  
+  @statuses = Status.all
+  @shipping_costs = Shipping_cost.all  
 end
 
 def create
@@ -23,6 +24,7 @@ def edit
   @product = Product.find(params[:id])
   @categories = Category.all
   @statuses = Status.all
+  @shipping_costs = Shipping_cost.all
 end
 
 private
