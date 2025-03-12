@@ -9,7 +9,8 @@ def new
   @categories = Category.all
   @statuses = Status.all
   @shipping_costs = Shipping_cost.all
-  @shipping_days = Shipping_day.all  
+  @shipping_days = Shipping_day.all
+  @prefectures = Prefecture.all  
 end
 
 def create
@@ -27,6 +28,7 @@ def edit
   @statuses = Status.all
   @shipping_costs = Shipping_cost.all
   @shipping_days = Shipping_day.all
+  @prefectures = Prefecture.all
 end
 
 private
