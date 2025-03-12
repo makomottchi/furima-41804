@@ -8,7 +8,8 @@ def new
   @product = Product.new
   @categories = Category.all
   @statuses = Status.all
-  @shipping_costs = Shipping_cost.all  
+  @shipping_costs = Shipping_cost.all
+  @shipping_days = Shipping_day.all  
 end
 
 def create
@@ -25,6 +26,7 @@ def edit
   @categories = Category.all
   @statuses = Status.all
   @shipping_costs = Shipping_cost.all
+  @shipping_days = Shipping_day.all
 end
 
 private
