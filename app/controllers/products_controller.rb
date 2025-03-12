@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
 
 def index
   @product = Product.all
@@ -8,8 +9,8 @@ def new
   @product = Product.new
   @categories = Category.all
   @statuses = Status.all
-  @shipping_costs = Shipping_cost.all
-  @shipping_days = Shipping_day.all
+  @shipping_costs = ShippingCost.all
+  @shipping_days = ShippingDay.all
   @prefectures = Prefecture.all  
 end
 
