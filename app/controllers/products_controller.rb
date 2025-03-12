@@ -6,6 +6,7 @@ end
 
 def new
   @product = Product.new
+  @categories = Category.all  
 end
 
 def create
@@ -17,10 +18,15 @@ def create
   end
 end
 
+def edit
+  @product = Product.find(params[:id])
+  @categories = Category.all
+end
+
 private
 
 def product_params
-  params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+  params.require(:product).permit(:name, :price, :description,:image).merge(user_id: current_user.id)
 end
 
 end
