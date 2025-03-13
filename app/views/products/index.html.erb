@@ -129,8 +129,8 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
-       <% @product.each do |product| %>
+       <% if @products.any? %>
+       <% @products.each do |product| %>
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <li class='list'>
         <%= link_to product_path(product) do %>
@@ -146,12 +146,21 @@
           <%# //商品が売れていればsold outを表示しましょう %>
 
         </div>
+
+        <div style="display: none;">
+        <span class="product-name"><%= product.name %></span>
+        <span class="product-price"><%= product.price %></span>
+        <span class="product-shipping">配送料負担</span>
+      </div>
         <div class='item-info'>
           <h3 class='item-name'>
             <%= "商品名" %>
+            <%= product.name %> 
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+            <span><%= "販売価格" %>円<br><%= '配送料負担' %>
+            <%= product.price %>円<br><%= '配送料負担' %> 
+            </span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -162,6 +171,7 @@
       </li>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
      <% end %>
+     <% else %>
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
@@ -183,6 +193,7 @@
       </li>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+    <% end %>
     </ul>
   </div>
   <%# /商品一覧 %>
