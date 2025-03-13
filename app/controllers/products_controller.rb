@@ -25,6 +25,8 @@ class ProductsController < ApplicationController
     set_collections
   end
 
+
+
   private
 
   def set_collections
