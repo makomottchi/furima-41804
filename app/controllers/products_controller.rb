@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @product = Product.all
+    @products = Product.order(created_at: :desc)
   end
 
   def new
@@ -20,10 +20,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-    set_collections
-  end
+  # def edit
+  # @product = Product.find(params[:id])
+  # set_collections
+  # end
 
   private
 
