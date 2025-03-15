@@ -133,25 +133,21 @@
        <% @products.each do |product| %>
      
       <li class='list'>
-        <%= link_to product_path(product) do %>
+        <%= link_to "#" do %>
         <div class='item-img-content'>
           <%= image_tag url_for(product.image), class: "item-img" %>
 
          
-          <% if product.order.present? %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
-          <% end %>
-         
+          <%# <%  if product.order.present? %> 
+  <%# <div class='sold-out'> %>
+    <%# <span>Sold Out!!</span> %>
+  <%# </div> %>
+<%# <%  end %> 
+        
 
         </div>
 
-        <div style="display: none;">
-        <span class="product-name"><%= product.name %></span>
-        <span class="product-price"><%= product.price %></span>
-        <span class="product-shipping">配送料負担</span>
-      </div>
+        
         <div class='item-info'>
           <h3 class='item-name'>
            
