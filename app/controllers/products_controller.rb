@@ -20,12 +20,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-    set_collections
-  end
-
-
+  # def edit
+  # @product = Product.find(params[:id])
+  # set_collections
+  # end
 
   private
 
