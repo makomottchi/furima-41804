@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
-  before_action :set_product, only: [:edit, :show, :update]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :set_product, only: [:edit, :show, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @products = Product.order(created_at: :desc)
@@ -35,6 +35,15 @@ class ProductsController < ApplicationController
     set_collections
     if @product.update(product_params)
       redirect_to @product
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    
+    if @product.destroy
+      redirect_to root_path
     else
       render :edit, status: :unprocessable_entity
     end
