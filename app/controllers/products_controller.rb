@@ -33,10 +33,8 @@ class ProductsController < ApplicationController
 
   def update
     set_collections
-    @product.update(product_params)
-    if @product.save
+    if @product.update(product_params)
       redirect_to @product
-
     else
       render :edit, status: :unprocessable_entity
     end
