@@ -25,6 +25,11 @@ class ProductsController < ApplicationController
   # set_collections
   # end
 
+  def show
+    @product = Product.find(params[:id])
+    set_collections
+  end
+
   private
 
   def set_collections
