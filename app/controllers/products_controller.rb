@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+
+  before_action :set_product, only: [:edit, :show, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @products = Product.order(created_at: :desc)
@@ -20,17 +23,34 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def edit
-  # @product = Product.find(params[:id])
-  # set_collections
-  # end
-
-  def show
-    @product = Product.find(params[:id])
+  def edit
     set_collections
   end
 
+  def show
+    set_collections
+  end
+
+  def update
+    set_collections
+    if @product.update(product_params)
+      redirect_to @product
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def ensure_correct_user
+    return unless @product.user_id != current_user.id
+
+    redirect_to root_path
+  end
 
   def set_collections
     @categories = Category.all

@@ -10,7 +10,7 @@ app/assets/stylesheets/items/new.css %>
     <%= form_with model: @product,local: true do |f| %>
 
    
-    <% render 'shared/error_messages', model: model: @product %>
+    <%= render 'shared/error_messages', model: @product %>
    
 
     <%# 商品画像 %>
@@ -141,7 +141,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', "#", class:"back-btn" %>
+      <%=link_to 'もどる', product_path(@product), class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
