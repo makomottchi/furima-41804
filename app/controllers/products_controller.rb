@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  
+
   before_action :set_product, only: [:edit, :show, :update]
   before_action :ensure_correct_user, only: [:edit, :update]
 
@@ -47,7 +47,6 @@ class ProductsController < ApplicationController
   end
 
   def ensure_correct_user
-   
     return unless @product.user_id != current_user.id
 
     redirect_to root_path
