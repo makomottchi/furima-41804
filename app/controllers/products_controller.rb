@@ -22,8 +22,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
-  @product = Product.find(params[:id])
-  set_collections
+    @product = Product.find(params[:id])
+    set_collections
   end
 
   def show
@@ -36,22 +36,22 @@ class ProductsController < ApplicationController
     set_collections
     @product.update(product_params)
     if @product.save
-      redirect_to @product 
+      redirect_to @product
 
     else
       render :edit, status: :unprocessable_entity
-   end
+    end
   end
 
   private
 
   def ensure_correct_user
     @product = Product.find(params[:id])
-    if @product.user_id != current_user.id
-      redirect_to root_path
-    end
+    return unless @product.user_id != current_user.id
+
+    redirect_to root_path
   end
-  
+
   def set_collections
     @categories = Category.all
     @statuses = Status.all
