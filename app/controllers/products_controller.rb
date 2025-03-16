@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @products = Product.order(created_at: :desc)
@@ -44,6 +45,13 @@ class ProductsController < ApplicationController
 
   private
 
+  def ensure_correct_user
+    @product = Product.find(params[:id])
+    if @product.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+  
   def set_collections
     @categories = Category.all
     @statuses = Status.all
