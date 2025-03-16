@@ -23,17 +23,14 @@ class ProductsController < ApplicationController
   end
 
   def edit
-  
     set_collections
   end
 
   def show
-   
     set_collections
   end
 
   def update
-  
     set_collections
     @product.update(product_params)
     if @product.save
