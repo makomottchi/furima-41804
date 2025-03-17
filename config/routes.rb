@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   get 'products/index'
   root to: 'products#index'
 
-  resources :products, only: [:index, :create, :new, :show, :edit, :update]
+  resources :products
 
 end
