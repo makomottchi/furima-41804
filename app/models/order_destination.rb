@@ -1,4 +1,4 @@
-class DonationAddress
+class OrderDestination
   include ActiveModel::Model
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building_name, :phone_number, :product, :user, :order
 
@@ -17,7 +17,7 @@ class DonationAddress
    
     order = Order.create(product: product, user_id: user_id)
 
-    Distination.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, adress: adress, building_name: building_name, phone_number: phone_number, order: order)
+    Destination.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, adress: adress, building_name: building_name, phone_number: phone_number, order: order)
   end
 
 end
