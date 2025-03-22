@@ -4,7 +4,8 @@ RSpec.describe OrderDestination, type: :model do
   before do
     @user = FactoryBot.create(:user)
     @product = FactoryBot.create(:product, user: @user)
-    @order_destination = FactoryBot.build(:order_destination, user_id: @user.id, product_id: @product.id, token: "tok_abcdefghijk00000000000000000")
+    @order_destination = FactoryBot.build(:order_destination, user_id: @user.id, product_id: @product.id,
+                                                              token: 'tok_abcdefghijk00000000000000000')
     sleep 0.1 # デットロック回避のための一時的なスリープ
   end
 
@@ -30,7 +31,7 @@ RSpec.describe OrderDestination, type: :model do
       it 'post_codeにハイフンがないと保存ができないこと' do
         @order_destination.post_code = '1234567'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@order_destination.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
 
       it 'prefecture_idが0の時保存ができないこと' do
@@ -60,26 +61,25 @@ RSpec.describe OrderDestination, type: :model do
       it 'phone_numberが9桁以下では保存ができないこと' do
         @order_destination.phone_number = '090123456'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid. Input half-width numbers.')
       end
 
       it 'phone_numberが12桁以上では保存ができないこと' do
         @order_destination.phone_number = '090123456789'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid. Input half-width numbers.')
       end
 
       it 'phone_numberにハイフンが含まれていると保存ができないこと' do
         @order_destination.phone_number = '090-1234-5678'
         @order_destination.valid?
-        expect(@order_destination.errors.full_messages).to include("Phone number is invalid. Input half-width numbers.")
+        expect(@order_destination.errors.full_messages).to include('Phone number is invalid. Input half-width numbers.')
       end
 
       it 'tokenが空では登録できないこと' do
         @order_destination.token = nil
         expect(@order_destination).not_to be_valid
       end
-
     end
   end
 end

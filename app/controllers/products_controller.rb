@@ -55,9 +55,9 @@ class ProductsController < ApplicationController
   end
 
   def ensure_correct_user
-    if @product.user_id != current_user.id || @product.order.present?
-      redirect_to root_path
-    end
+    return unless @product.user_id != current_user.id || @product.order.present?
+
+    redirect_to root_path
   end
 
   def set_collections
