@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       @order_destination.save
       redirect_to root_path
     else
-      @prefectures = Prefecture.all
+      @prefecture = Prefecture.all
       render :index, status: :unprocessable_entity
     end
   end
