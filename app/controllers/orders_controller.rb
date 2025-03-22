@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def order_destination_params
-    params.require(:order_destination).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(product: @product, user: current_user)
+    params.require(:order_destination).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(product_id: @product.id, user_id: current_user.id)
   end
 
 end
