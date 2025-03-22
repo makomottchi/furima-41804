@@ -1,6 +1,6 @@
 class OrderDestination
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :product_id, :user_id, :order_id
+  attr_accessor :post_code, :prefecture_id, :city, :address, :building_name, :phone_number, :product_id, :user_id, :order_id, :token
 
   with_options presence: true do
     validates :city, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters." }
@@ -10,6 +10,7 @@ class OrderDestination
 
     validates :product_id, numericality: { only_integer: true, message: "must be an integer" }
     validates :user_id, numericality: { only_integer: true, message: "must be an integer" }
+    validates :token, presence: true
     
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
   end
