@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: [:index, :create]
   before_action :redirect_if_sold_out, only: [:index, :create]
+  before_action :redirect_if_seller, only: [:index, :create]
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -27,6 +28,18 @@ class OrdersController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
+  end
+
+  def redirect_if_sold_out
+    if @product.order.present?
+      redirect_to root_path
+    end
+  end
+
+  def redirect_if_seller
+    if @product.user_id == current_user.id
+      redirect_to root_path
+    end
   end
 
   def order_destination_params
