@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_product, only: [:index, :create]
 
   def index
-    @order_destination = OrderDestination.new(product: @product, user: current_user)
+    @order_destination = OrderDestination.new(product_id: @product.id, user_id: current_user.id)
     @prefecture = Prefecture.all
   end
 
@@ -24,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def order_destination_params
-    params.require(:order_destination).permit(:postal_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(product_id: @product.id, user_id: current_user.id)
+    params.require(:order_destination).permit(:post_code, :prefecture_id, :city, :address, :building_name, :phone_number).merge(product_id: @product.id, user_id: current_user.id)
   end
 
 end
