@@ -3,9 +3,8 @@ require 'rails_helper'
 RSpec.describe OrderDestination, type: :model do
   before do
     @user = FactoryBot.create(:user)
-    @product = FactoryBot.create(:product, user: @user)
-    @order_destination = FactoryBot.build(:order_destination, user_id: @user.id, product_id: @product.id,
-                                                              token: 'tok_abcdefghijk00000000000000000')
+    @product = FactoryBot.create(:product)
+    @order_destination = FactoryBot.build(:order_destination, user_id: @user.id, product_id: @product.id)
     sleep 0.1 # デットロック回避のための一時的なスリープ
   end
 
@@ -78,7 +77,20 @@ RSpec.describe OrderDestination, type: :model do
 
       it 'tokenが空では登録できないこと' do
         @order_destination.token = nil
-        expect(@order_destination).not_to be_valid
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空では保存ができないこと' do
+        @order_destination.user_id = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("User can't be blank")
+      end
+      
+      it 'product_idが空では保存ができないこと' do
+        @order_destination.product_id = nil
+        @order_destination.valid?
+        expect(@order_destination.errors.full_messages).to include("Product can't be blank")
       end
     end
   end

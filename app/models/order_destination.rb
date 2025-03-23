@@ -13,7 +13,7 @@ class OrderDestination
 
     validates :product_id, numericality: { only_integer: true, message: 'must be an integer' }
     validates :user_id, numericality: { only_integer: true, message: 'must be an integer' }
-    validates :token, presence: true
+    validates :token
 
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
   end
