@@ -86,7 +86,7 @@ RSpec.describe OrderDestination, type: :model do
         @order_destination.valid?
         expect(@order_destination.errors.full_messages).to include("User can't be blank")
       end
-      
+
       it 'product_idが空では保存ができないこと' do
         @order_destination.product_id = nil
         @order_destination.valid?
