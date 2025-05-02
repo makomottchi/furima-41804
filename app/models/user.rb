@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :products, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :comments
 
   validates :nickname, presence: true
   validates :family_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'Full-width characters only' }

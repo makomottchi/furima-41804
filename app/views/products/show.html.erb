@@ -88,6 +88,7 @@
   </div>
   <%# /商品の概要 %>
 
+<% if user_signed_in? %>
   <div class="comment-box">
     <form>
       <textarea class="comment-text"></textarea>
@@ -102,6 +103,15 @@
       </button>
     </form>
   </div>
+ <% else %> 
+ <div class="alert alert-warning">
+    <p>コメントするにはログインが必要です。</p>
+    <%= link_to 'ログイン', new_user_session_path, class: "btn btn-primary" %>
+    <%= "または" %>
+    <%= link_to '新規登録', new_user_registration_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品

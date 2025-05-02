@@ -15,6 +15,7 @@
 
 - has_many :products, dependent: :destroy
 - has_many :orders, dependent: :destroy
+- has_many :comments
 
 
 ## destinations テーブル
@@ -53,6 +54,7 @@
 
 - belongs_to :user 
 - has_one :order
+- has_many :comments
 
 ## orders テーブル
 
@@ -68,6 +70,25 @@
 - belongs_to :product
 - belongs_to :user
 - has_to :destination
+
+
+## comments テーブル
+
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| user               | references | null: false, foreign_key: true |
+| product            | references | null: false, foreign_key: true |
+| text               | text       | null: false |
+
+
+
+### Association
+
+- belongs_to :product
+- belongs_to :user
+
+
+
 
 
 

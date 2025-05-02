@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   resources :products do
     resources :orders, only: [:index, :create]
   end
+
+  resources :products do
+    resources :comments, only: :create
+  end
 end
